@@ -1,0 +1,18 @@
+class Solution {
+    public int[] deckRevealedIncreasing(int[] deck) {
+        int n = deck.length;
+        java.util.Arrays.sort(deck);
+        java.util.Deque<Integer> queue = new java.util.LinkedList<>();
+        for (int i = 0; i < n; i++) {
+            queue.add(i);
+        }
+        int[] result = new int[n];
+        for (int card : deck) {
+            result[queue.poll()] = card;
+            if (!queue.isEmpty()) {
+                queue.add(queue.poll());
+            }
+        }
+        return result;
+    }
+}
